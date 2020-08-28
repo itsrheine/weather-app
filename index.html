@@ -26,9 +26,8 @@
             <div class="card">
                 <h3 class="card-header text-uppercase">Search for City</h3>
                 <form id="user-form" class="card-body">
-                    <label class="form-label" for="city">City</label>
-                    <input name="city" id="city" type="text" autofocus="true" class="form-input" />
-                    <button type="submit" class="button">Icon</button>
+                    <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a city" class="inputValue" />
+                    <button type="submit" value="Submit" class="button">Icon</button>
                 </form>
             </div>
 
@@ -50,12 +49,12 @@
         <div class="col-12 col-md-8">
             <div class="main-dash">
                 <div class="row ml-2 border border-dark">
-                    <div class="col-sm-12" id="current-weather">
+                    <div class="col-sm-12 display" id="current-weather">
                         <p class="cityName" id="searchedCity"><span id="currentDay"></span></p>
-                        <p>Temperature:<span class="current" id="temperature"></span></p>
-                        <p>Humidity:<span class="current" id="humidity"></span></p> 
-                        <p>Wind Speed:<span class="current" id="windSpeed"></span></p>
-                        <p>UV index:<span class="current py-2 px-2 text-white" id="uvIndex"></span></p> 
+                        <p>Temperature:<span class="temperature"></span></p>
+                        <p>Humidity:<span class="humidity"></span></p> 
+                        <p>Wind Speed:<span class="windSpeed"></span></p>
+                        <p>UV index:<span class="uvIndex"></span></p> 
                     </div>
                 </div>
             </div>
@@ -129,6 +128,6 @@
             </div>
         </div>
     </main>
-
+    <script src="./assets/js/index.js"></script>
 </body>
 </html>
