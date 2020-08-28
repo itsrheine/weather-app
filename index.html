@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Add Bootstrap Here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body class="flex-column min-100-vh">
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1 class="app-title">Weather Dashboard</h1>
+    </header>
+
+    <main class="flex-row justify-space-between">
+
+        <!-- Search Bar -->
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <h3 class="card-header text-uppercase">Search for City</h3>
+                <form id="user-form" class="card-body">
+                    <label class="form-label" for="city">City</label>
+                    <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+                    <button type="submit" class="button">Icon</button>
+                </form>
+            </div>
+
+            <!-- Quick Search Cities -->
+            <div class="card">
+                <h3 class="card-header text-uppercase">Cities</h3>
+                    <div class="card-body" id="city-buttons">
+                    <button class="btn" data="other-cities">Austin</button>
+                    <button class="btn" data="other-cities">SFO</button>
+                    <button class="btn" data="other-cities">New York</button>
+                    <button class="btn" data="other-cities">Chicago</button>
+                    <button class="btn" data="other-cities">Seattle</button>
+                    <button class="btn" data="other-cities">Denver</button>
+                </div>
+            </div>   
+        </div>
+        
+        <!-- Main Weather Dashboard -->
+        <div class="col-12 col-md-8">
+            <div class="main-dash">
+                <h3 class="dash-title text-uppercase">
+                    <!-- Searched City -->
+                    <span class="city-search-term"></span>
+                    <!-- Current Date -->
+                    <span class="currentDay"></span>
+                    <!-- icon here -->
+                </h3>
+                <div id="weather-container" class="list-group">
+                    <ul class="attr-list">
+                        <li><h2>Temperature: <span class="temp"></span></h2></li>
+                        <li><h2>Humidity: <span class="humidity"></span></h2></li>
+                        <li><h2>Wind Speed: <span class="wind"></span></h2></li>
+                        <li><h2>UV Index: <span class="uvIndex"></span></h2></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5 Day Forecast -->
+            <div class="secondary-dash">
+                <h3 class="dash-title text-uppercase">5-Day Forecast:</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="5container">
+                        <span id="day1">Day2</span>
+                        <div class="weather-container">
+                            <div class="weather-icon"></div>
+                            <div class="temp-value"><p>- °<span>C</span></p></div>
+                            <div class="temperature-description"><p> - </p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <span id="day1">Day2</span>
+                </div>
+                <div class="col-sm-2">
+                    <span id="day1">Day3</span>
+                </div>
+                <div class="col-sm-2">
+                    <span id="day1">Day4</span>
+                </div>
+                <div class="col-sm-2">
+                    <span id="day1">Day5</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
