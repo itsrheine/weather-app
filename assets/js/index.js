@@ -53,7 +53,7 @@ var getCity = function(value) {
 };
 
 
-// get city's coordinate
+// get city's coordinates
 var cityCoord = function (data) {
 
     // format api url
@@ -72,13 +72,38 @@ var cityCoord = function (data) {
 
         console.log("lot " + lonValue);
         console.log("lat " + latValue);
-    });
-    
+
+        // format api url
+        var apiUrl2 = "http://api.openweathermap.org/data/2.5/uvi?appid=386eafe2ba649945a853251bb7d3f25e&lat="+latValue+"&lon="+lonValue;
+
+        // make a request to 2nd url
+        fetch(apiUrl2).then(function(response) {
+            response.json().then(function(data) {
+                
+                // get data in main dashboard
+                var uvIndexValue = data['value'];
+                uvIndex.innerHTML = uvIndexValue;
+
+                // conditional statement color coding
+                if (uvIndexValue > 5) {
+                    uvIndex.className = "rounded bg-danger p3";
+                }
+                else if (uvIndexValue < 3) {
+                    uvIndex.className = "rounded bg-success p3";
+                }
+                else {
+                    uvIndex.className = "rounded bg-warning p3";
+                }
+                return uvIndexValue;
+                })
+        }); 
+    });  
+
     } else {
             alert("Error: " + response.statusText);
         }
     })
-    
+
     .catch(function(error) {
     // if above function does not work
     alert("Unable to connect");
@@ -130,19 +155,3 @@ var formSubmitHandler = function(event) {
 }
 
 button.addEventListener("click", formSubmitHandler);
-
-
-
-        // // conditional statement color change for UV Index indicator
-        // if (UvIndexValue > 5) {
-        //     UvIndexValue.className = "rounded bg-danger p2"
-        // }
-        // else if (UvIndexValue < 3) {
-        //     UvIndexValue.className = "rounded bg-success p2"
-        // }
-        // else {
-        //     UvIndexValue.className = "rounded bg-warning p2"
-        // }
-        // {
-        //     return UvIndexValue;
-        // }
