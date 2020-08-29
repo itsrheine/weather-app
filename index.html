@@ -14,6 +14,7 @@
 
 <body class="flex-column min-100-vh">
 
+
     <!-- Hero Section -->
     <header class="hero">
         <h1 class="app-title">Weather Dashboard</h1>
@@ -50,12 +51,12 @@
             <div class="main-dash">
                 <div class="row ml-2 border border-dark">
                     <div class="col-sm-12 display" id="current-weather">
-                        <p class="cityName" id="searchedCity"><span id="currentDay"></span></p>
+                        <p class="cityName" id="searchedCity"><span class="currentDay"></span></p>
                         <p class="text-uppercase" id="weather-description"><span class="description"></span></p>
                         <p>Temperature:<span class="temperature"></span></p>
                         <p>Humidity:<span class="humidity"></span></p> 
                         <p>Wind Speed:<span class="windSpeed"></span></p>
-                        <!-- <p>UV index:<span class="uvIndex"></span></p>  -->
+                        <p>UV index:<span class="uvIndex"></span></p> 
                     </div>
                 </div>
             </div>
@@ -129,6 +130,7 @@
             </div>
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/index.js"></script>
 </body>
 </html>
