@@ -8,8 +8,10 @@ var temperature = document.querySelector(".temperature");
 var humidity = document.querySelector(".humidity");
 var windSpeed = document.querySelector(".windSpeed");
 var uvIndex = document.querySelector(".uvIndex");
+var parent = document.getElementById('parentElementID');
 
 // variables - 5 day forecast
+
 
 // get main dashboard current weather - using city id
 var getCity = function(value) {
@@ -29,14 +31,15 @@ var getCity = function(value) {
             var m = moment();
             var date = (m.format("LL"));
             var descriptionValue = data['weather'][0]['description'];
-            var temperatureValue = " " + data['main']['temp'] + "°F";
+            var temperatureValue = data['main']['temp'];
+            var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + " °F";
             var humidityValue = " " + data['main']['humidity'] + "%";
-            var windSpeedValue = " " + data['wind']['speed'] + "mph";
+            var windSpeedValue = " " + data['wind']['speed'] + " mph";
             
             cityName.innerHTML = cityValue;
             currentDay.innerHTML = date;
             weatherDescription.innerHTML = descriptionValue;
-            temperature.innerHTML = temperatureValue;
+            temperature.innerHTML = temperatureFarhenheit;
             humidity.innerHTML = humidityValue;
             windSpeed.innerHTML = windSpeedValue;
 
@@ -53,11 +56,11 @@ var getCity = function(value) {
 };
 
 
-// get city's coordinates
+// get city's coordinates & uv index for main dashboard
 var cityCoord = function (data) {
 
     // format api url
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+inputValue.value+"&appid=386eafe2ba649945a853251bb7d3f25e";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+data+"&appid=386eafe2ba649945a853251bb7d3f25e";
     
     // make a request to the url
     fetch(apiUrl).then(function(response) {    
@@ -69,9 +72,6 @@ var cityCoord = function (data) {
         // get remaining data for dashboard
         var lonValue = data['coord']['lon'];
         var latValue = data['coord']['lat'];
-
-        console.log("lot " + lonValue);
-        console.log("lat " + latValue);
 
         // format api url
         var apiUrl2 = "http://api.openweathermap.org/data/2.5/uvi?appid=386eafe2ba649945a853251bb7d3f25e&lat="+latValue+"&lon="+lonValue;
@@ -145,6 +145,43 @@ var cityCoord = function (data) {
 //     });
 // };
 
+// pre-selected city buttons
+var cityButtons = function(button) {
+
+    var x = button.id;
+    console.log(x);
+    switch (x) {
+        case '1':
+            getCity("austin");
+            cityCoord("austin");
+            break;
+        case '2':
+            getCity("san&francisco");
+            cityCoord("san&francisco");
+            break;
+        case '3':
+            getCity("new&york");
+            cityCoord("new&york");
+            break;
+        case '4':
+            getCity("chicago");
+            cityCoord("chicago");
+            break; 
+        case '5':
+            getCity("seattle");
+            cityCoord("seattle");
+            break;
+        case '6':
+            getCity("denver");
+            cityCoord("denver");
+            break;        
+        default:
+            return false;                          
+    }
+
+}
+
+
 var formSubmitHandler = function(event) {
     event.preventDefault();
 
@@ -155,3 +192,4 @@ var formSubmitHandler = function(event) {
 }
 
 button.addEventListener("click", formSubmitHandler);
+parent.addEventListener('click', cityButtons);

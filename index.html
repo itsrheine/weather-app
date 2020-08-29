@@ -33,15 +33,15 @@
             </div>
 
             <!-- Quick Search Cities -->
-            <div class="card">
+            <div class="card" id="parentElementID">
                 <h3 class="card-header text-uppercase">Cities</h3>
                     <div class="card-body" id="city-buttons">
-                    <button class="btn" data="other-cities">Austin</button>
-                    <button class="btn" data="other-cities">SFO</button>
-                    <button class="btn" data="other-cities">New York</button>
-                    <button class="btn" data="other-cities">Chicago</button>
-                    <button class="btn" data="other-cities">Seattle</button>
-                    <button class="btn" data="other-cities">Denver</button>
+                    <button type="button" onclick="cityButtons(this)" id="1">Austin</button>
+                    <button type="button" onclick="cityButtons(this)" id="2">SFO</button>
+                    <button type="button" onclick="cityButtons(this)" id="3">New York</button>
+                    <button type="button" onclick="cityButtons(this)" id="4">Chicago</button>
+                    <button type="button" onclick="cityButtons(this)" id="5">Seattle</button>
+                    <button type="button" onclick="cityButtons(this)" id="6">Denver</button>
                 </div>
             </div>   
         </div>
@@ -53,7 +53,7 @@
                     <div class="col-sm-12 display" id="current-weather">
                         <p class="cityName" id="searchedCity"><span class="currentDay"></span></p>
                         <p class="text-uppercase" id="weather-description"><span class="description"></span></p>
-                        <p>Temperature:<span class="temperature"></span></p>
+                        <p>Temperature: <span class="temperature"></span></p>
                         <p>Humidity:<span class="humidity"></span></p> 
                         <p>Wind Speed:<span class="windSpeed"></span></p>
                         <p>UV index: <span class="uvIndex"></span></p> 
