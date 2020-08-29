@@ -74,7 +74,7 @@ var cityCoord = function (data) {
         var latValue = data['coord']['lat'];
 
         // format api url
-        var apiUrl2 = "http://api.openweathermap.org/data/2.5/uvi?appid=386eafe2ba649945a853251bb7d3f25e&lat="+latValue+"&lon="+lonValue;
+        var apiUrl2 = "https://api.openweathermap.org/data/2.5/uvi?appid=386eafe2ba649945a853251bb7d3f25e&lat="+latValue+"&lon="+lonValue;
 
         // make a request to 2nd url
         fetch(apiUrl2).then(function(response) {
