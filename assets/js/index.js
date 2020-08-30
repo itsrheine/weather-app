@@ -11,7 +11,9 @@ var uvIndex = document.querySelector(".uvIndex");
 var parent = document.getElementById('parentElementID');
 
 // variables - 5 day forecast
+var dateDaily = document.querySelector(".dateDaily")
 var temperatureDaily = document.querySelector(".temperatureDaily")
+var humidityDaily = document.querySelector(".humidityDaily")
 
 // get main dashboard current weather - using city id
 var getCity = function(value) {
@@ -29,10 +31,10 @@ var getCity = function(value) {
             // get all the data - main dashboard
             var cityValue = data['name'];
             var m = moment();
-            var date = (m.format("LL"));
+            var date = m.format("LL");
             var descriptionValue = data['weather'][0]['description'];
             var temperatureValue = data['main']['temp'];
-            var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + " °F";
+            var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + "°F";
             var humidityValue = " " + data['main']['humidity'] + "%";
             var windSpeedValue = " " + data['wind']['speed'] + " mph";
             
@@ -123,19 +125,22 @@ var get5Day = function (value) {
         // request was successful
         if (response.ok) {            
             response.json().then(function(data) {
-            console.log(data.list[0]);
-            
+                console.log(data);
+                        
             for (var i = 1; 1 < 6; i++) {
-
-                // get all data for secondary dashboard
-                var temperatureValue = data[list][i][main][temp];
-                var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + " °F";
-
-
+                
+                // get all data for secondary dashboar
+                var dateValue = moment().add(1, 'days').format('ll')
+                var temperatureValue = data.list[i].main.temp;
+                var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + "°F";
+                var humidityValue = data.list[i].main.humidity + "%";           
+                
+                dateDaily.innerHTML = dateValue;
                 temperatureDaily.innerHTML = temperatureFarhenheit;
+                humidityDaily.innerHTML = humidityValue;
 
             }
-        })
+        });
         } else {
             alert("Error: " + response.statusText);
         }
@@ -155,26 +160,32 @@ var cityButtons = function(button) {
         case '1':
             getCity("austin");
             cityCoord("austin");
+            get5Day("austin");
             break;
         case '2':
             getCity("san&francisco");
             cityCoord("san&francisco");
+            get5Day("san&francisco");
             break;
         case '3':
             getCity("new&york");
             cityCoord("new&york");
+            get5Day("new&york");            
             break;
         case '4':
             getCity("chicago");
             cityCoord("chicago");
+            get5Day("chicago");            
             break; 
         case '5':
             getCity("seattle");
             cityCoord("seattle");
+            get5Day("seattle");
             break;
         case '6':
             getCity("denver");
             cityCoord("denver");
+            get5Day("denver");            
             break;        
         default:
             return false;                          
