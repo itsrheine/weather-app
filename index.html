@@ -14,37 +14,28 @@
 
 <body class="flex-column min-100-vh">
 
-
     <!-- Hero Section -->
     <header class="hero">
-        <h1 class="app-title">Weather Dashboard</h1>
+        <h1 class="navbar-dark bg-dark text-light navbar sticky-top">Weather Dashboard</h1>
     </header>
 
-    <main class="flex-row justify-space-between">
-
-        <!-- Search Bar -->
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <h3 class="card-header text-uppercase">Search for City</h3>
-                <form id="user-form" class="card-body">
-                    <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a city" class="inputValue" />
-                    <button type="submit" value="Submit" class="button">Icon</button>
-                </form>
-            </div>
-
-            <!-- Quick Search Cities -->
-            <div class="card" id="parentElementID">
-                <h3 class="card-header text-uppercase">Cities</h3>
-                    <div class="card-body" id="city-buttons">
-                    <button type="button" onclick="cityButtons(this)" id="1">Austin</button>
-                    <button type="button" onclick="cityButtons(this)" id="2">SFO</button>
-                    <button type="button" onclick="cityButtons(this)" id="3">New York</button>
-                    <button type="button" onclick="cityButtons(this)" id="4">Chicago</button>
-                    <button type="button" onclick="cityButtons(this)" id="5">Seattle</button>
-                    <button type="button" onclick="cityButtons(this)" id="6">Denver</button>
-                </div>
-            </div>   
-        </div>
+    <main class="container-fluid">
+        <div class="row">
+            <nav id="searchBar" class="col-md-12 col-lg-3 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <!-- Search Form -->
+                    <div class="input-group mb-3"> 
+                        <h3 class="card-header text-uppercase">Search for City</h3>
+                        <form id="user-form" class="card-body">
+                            <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a city" class="inputValue" />
+                            <button type="submit" value="Submit" onclick="saveCity(event)" class="button btn-outline-secondary">Icon</button>
+                        </form>
+                    </div>
+                <!-- Recently Searched -->
+                <div id="recentSearch" class="nav flex-column">
+                             
+                </div>   
+            </nav>
         
         <!-- Main Weather Dashboard -->
         <div class="col-12 col-md-8">

@@ -1,4 +1,4 @@
-// variables - main dashboard
+// variables
 var button = document.querySelector(".button");
 var inputValue = document.querySelector("#city");
 var cityName = document.querySelector(".cityName");
@@ -8,7 +8,27 @@ var temperature = document.querySelector(".temperature");
 var humidity = document.querySelector(".humidity");
 var windSpeed = document.querySelector(".windSpeed");
 var uvIndex = document.querySelector(".uvIndex");
-var parent = document.getElementById('parentElementID');
+var parent = document.getElementById("parentElementID");
+var recentSearch = document.querySelector("#recentSearch");
+
+
+// keyup for recent searches
+inputValue.addEventListener("keyup", () => {
+    // disables the person adding an empty search bar
+    button.disabled = !inputValue.value;
+
+    var city = inputValue.value;
+    getCity(city);
+    cityCoord(city);
+    get5Day(city);
+})
+
+var loadLast = function (event) {
+    var city = event.target.textContent;
+    getCity(city);
+    cityCoord(city);
+    get5Day(city);
+}
 
 // get main dashboard current weather - using city id
 var getCity = function(value) {
@@ -120,7 +140,6 @@ var get5Day = function (value) {
         // request was successful
         if (response.ok) {            
             response.json().then(function(data) {
-                console.log(data);
                      
             for (var i = 1; 1 < 6; i++) {
 
@@ -153,56 +172,29 @@ var get5Day = function (value) {
     });
 };
 
-// pre-selected city buttons
-var cityButtons = function(button) {
-
-    var x = button.id;
-    switch (x) {
-        case '1':
-            getCity("austin");
-            cityCoord("austin");
-            get5Day("austin");
-            break;
-        case '2':
-            getCity("san&francisco");
-            cityCoord("san&francisco");
-            get5Day("san&francisco");
-            break;
-        case '3':
-            getCity("new&york");
-            cityCoord("new&york");
-            get5Day("new&york");            
-            break;
-        case '4':
-            getCity("chicago");
-            cityCoord("chicago");
-            get5Day("chicago");            
-            break; 
-        case '5':
-            getCity("seattle");
-            cityCoord("seattle");
-            get5Day("seattle");
-            break;
-        case '6':
-            getCity("denver");
-            cityCoord("denver");
-            get5Day("denver");            
-            break;        
-        default:
-            return false;                          
-    }
-
-}
-
-
+// when search button is clicked 
 var formSubmitHandler = function(event) {
     event.preventDefault();
 
     var city = inputValue.value;
+    
+    // local storage
+    function save() {
+        var addCity = city
+        if (localStorage.getItem("recentSearch") === null) {
+            localStorage.setItem("recentSearch", "[]");
+        }
+        var newCity = JSON.parse(localStorage.getItem("recentSearch"));
+        newCity.push(addCity);
+
+        localStorage.setItem("recentSearch", JSON.stringify(newCity))
+    };
+
     getCity(city);
     cityCoord(city);
     get5Day(city);
-}
+    save(city);
+};
+
 
 button.addEventListener("click", formSubmitHandler);
-parent.addEventListener('click', cityButtons);
