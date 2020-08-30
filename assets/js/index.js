@@ -12,8 +12,9 @@ var parent = document.getElementById('parentElementID');
 
 // variables - 5 day forecast
 var dateDaily = document.querySelector(".dateDaily")
-var temperatureDaily = document.querySelector(".temperatureDaily")
-var humidityDaily = document.querySelector(".humidityDaily")
+// var temperatureDay1 = document.querySelector(".temperatureDay1")
+// var humidityDay1 = document.querySelector(".humidityDay1")
+
 
 // get main dashboard current weather - using city id
 var getCity = function(value) {
@@ -126,19 +127,45 @@ var get5Day = function (value) {
         if (response.ok) {            
             response.json().then(function(data) {
                 console.log(data);
-                        
+                     
             for (var i = 1; 1 < 6; i++) {
-                
-                // get all data for secondary dashboar
-                var dateValue = moment().add(1, 'days').format('ll')
+                    
+                // variables
+                var dateValue = moment().add(i, 'days').format('ll')
                 var temperatureValue = data.list[i].main.temp;
                 var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + "°F";
-                var humidityValue = data.list[i].main.humidity + "%";           
-                
-                dateDaily.innerHTML = dateValue;
-                temperatureDaily.innerHTML = temperatureFarhenheit;
-                humidityDaily.innerHTML = humidityValue;
+                var humidityValue = data.list[i].main.humidity + "%";
 
+                var x = document.querySelector("#dateDaily");
+                switch (x) {
+                    case 'day1':
+                        dateDaily.innerHTML = dateValue;
+                        temperatureDay1.innerHTML = temperatureFarhenheit;
+                        humidityDay1.innerHTML = humidityValue;      
+                        break;
+                    case 'day2':
+                        dateDaily.innerHTML = dateValue;
+                        temperatureDay2.innerHTML = temperatureFarhenheit;
+                        humidityDay2.innerHTML = humidityValue;   
+                        break;
+                    case 'day3':
+                        dateDaily.innerHTML = dateValue;
+                        temperatureDay3.innerHTML = temperatureFarhenheit;
+                        humidityDay3.innerHTML = humidityValue;   
+                        break;
+                    case 'day4':
+                        dateDaily.innerHTML = dateValue;
+                        temperatureDay4.innerHTML = temperatureFarhenheit;
+                        humidityDay4.innerHTML = humidityValue;   
+                        break;
+                    case 'day5':
+                        dateDaily.innerHTML = dateValue;
+                        temperatureDay5.innerHTML = temperatureFarhenheit;
+                        humidityDay5.innerHTML = humidityValue;   
+                        break;
+                    default:
+                        return false;
+                }
             }
         });
         } else {
