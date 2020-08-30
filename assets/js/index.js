@@ -11,7 +11,7 @@ var uvIndex = document.querySelector(".uvIndex");
 var parent = document.getElementById('parentElementID');
 
 // variables - 5 day forecast
-
+var temperatureDaily = document.querySelector(".temperatureDaily")
 
 // get main dashboard current weather - using city id
 var getCity = function(value) {
@@ -111,45 +111,46 @@ var cityCoord = function (data) {
 };
 
 
+// get 5 day forecast
+var get5Day = function (value) {
 
-// var get5Day = function (value) {
-//     // format api url
-//     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+value+"&appid=386eafe2ba649945a853251bb7d3f25e"
+    // format api url
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+value+"&appid=386eafe2ba649945a853251bb7d3f25e";
 
-//     // make a request to the url
-//     fetch(apiUrl).then(function(response) {
+    // make a request to the url
+    fetch(apiUrl).then(function(response) {
+        
+        // request was successful
+        if (response.ok) {            
+            response.json().then(function(data) {
+            console.log(data.list[0]);
+            
+            for (var i = 1; 1 < 6; i++) {
 
-//         // request was successful
-//         if (response.ok) {            
-//             response.json().then(function(data) {
-//             console.log(data);
-
-//             // get all the data - main dashboard
-//             // var dateValue = //from currentDate momentjs
-//             // var cityValue = data['name'];
-//             // var descriptionValue = data['weather'][0]['description'];
-//             // var temperatureValue = " " + data['main']['temp'] + "°F";
-//             // var humidityValue = " " + data['main']['humidity'] + "%";
-//             // var windSpeedValue = " " + data['wind']['speed'] + "mph";
+                // get all data for secondary dashboard
+                var temperatureValue = data[list][i][main][temp];
+                var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + " °F";
 
 
-//         })
-//         } else {
-//             alert("Error: " + response.statusText);
-//         }
-//     })
+                temperatureDaily.innerHTML = temperatureFarhenheit;
 
-//     .catch(function(error) {
-//     // if above function does not work
-//     alert("Unable to connect");
-//     });
-// };
+            }
+        })
+        } else {
+            alert("Error: " + response.statusText);
+        }
+    })
+
+    .catch(function(error) {
+    // if above function does not work
+    alert("Unable to connect");
+    });
+};
 
 // pre-selected city buttons
 var cityButtons = function(button) {
 
     var x = button.id;
-    console.log(x);
     switch (x) {
         case '1':
             getCity("austin");
@@ -188,7 +189,7 @@ var formSubmitHandler = function(event) {
     var city = inputValue.value;
     getCity(city);
     cityCoord(city);
-    // get5Day(city);
+    get5Day(city);
 }
 
 button.addEventListener("click", formSubmitHandler);
