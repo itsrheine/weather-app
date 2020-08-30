@@ -2,7 +2,7 @@
 var button = document.querySelector(".button");
 var inputValue = document.querySelector("#city");
 var cityName = document.querySelector(".cityName");
-var currentDay = document.querySelector(".currentDay");
+var currentDay = document.querySelector("#currentDay");
 var weatherDescription = document.querySelector(".description");
 var temperature = document.querySelector(".temperature");
 var humidity = document.querySelector(".humidity");
@@ -10,6 +10,7 @@ var windSpeed = document.querySelector(".windSpeed");
 var uvIndex = document.querySelector(".uvIndex");
 var parent = document.getElementById("parentElementID");
 var recentSearch = document.querySelector("#recentSearch");
+var iconWeather = document.querySelector("#wicon");
 
 
 // keyup for recent searches
@@ -42,24 +43,26 @@ var getCity = function(value) {
         // request was successful
         if (response.ok) {            
             response.json().then(function(data) {
-            
+            console.log(data);
             // get all the data - main dashboard
             var cityValue = data['name'];
             var m = moment();
-            var date = m.format("LL");
-            var descriptionValue = data['weather'][0]['description'];
+            var date = m.format("LL");            
+            // var i = data['weather']['icon']; // code
+            // var iconEl = response.weather[i].icon
+            // i.setAttribute("src", ("http://openweathermap.org/img/w/" + iconCode + ".png"));
             var temperatureValue = data['main']['temp'];
             var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + "°F";
             var humidityValue = " " + data['main']['humidity'] + "%";
-            var windSpeedValue = " " + data['wind']['speed'] + " mph";
-            
+            var windSpeedValue = " " + data['wind']['speed'] + " mph";             
+
             cityName.innerHTML = cityValue;
             currentDay.innerHTML = date;
-            weatherDescription.innerHTML = descriptionValue;
+            // wicon.innerHTML = iconEl;
             temperature.innerHTML = temperatureFarhenheit;
             humidity.innerHTML = humidityValue;
             windSpeed.innerHTML = windSpeedValue;
-
+                
         })
         } else {
             alert("Error: " + response.statusText);
@@ -150,7 +153,7 @@ var get5Day = function (value) {
                     
                 // secondary dashboard
                 var date = moment().add(i, 'days').format('l');
-                dateEl.innerHTML = date;
+                dateEl.innerHTML = date
 
                 var temperatureValue = data.list[i].main.temp;
                 var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + "°F";
@@ -175,6 +178,21 @@ var get5Day = function (value) {
 // when search button is clicked 
 var formSubmitHandler = function(event) {
     event.preventDefault();
+
+    // city to appear after search
+    var askCity = inputValue.value.trim();
+    if (askCity) {
+        cityList = document.createElement("li");
+        cityList.className = "nav-item";
+        cityList.innerHTML="<a href='#' class='border nav-link'><span data-feather='file'></span>"+askCity+"</a>";
+    
+        recentSearch.appendChild(cityList);
+        
+        getCity(askCity);
+        inputValue.value = "";
+    } else {
+        alert("Please enter a city.");
+    }
 
     var city = inputValue.value;
     

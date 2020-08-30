@@ -7,7 +7,6 @@
 
     <!-- Add Bootstrap Here -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    
     <link rel="stylesheet" href="./assets/css/index.css">
     <title>Weather Dashboard</title>
 </head>
@@ -16,19 +15,19 @@
 
     <!-- Hero Section -->
     <header class="hero">
-        <h1 class="navbar-dark bg-dark text-light navbar sticky-top">Weather Dashboard</h1>
+        <h1 class="navbar-dark bg-dark text-white navbar sticky-top display-2">Weather Dashboard</h1>
     </header>
 
     <main class="container-fluid">
         <div class="row">
-            <nav id="searchBar" class="col-md-12 col-lg-3 d-md-block bg-light sidebar collapse">
+            <nav id="searchBar" class="col-md-12 col-lg-3 d-md-block bg-dark text-light sidebar collapse rounded">
                 <div class="sidebar-sticky pt-3">
                     <!-- Search Form -->
                     <div class="input-group mb-3"> 
                         <h3 class="card-header text-uppercase">Search for City</h3>
                         <form id="user-form" class="card-body">
                             <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a city" class="inputValue" />
-                            <button type="submit" value="Submit" onclick="saveCity(event)" class="button btn-outline-secondary">Icon</button>
+                            <button type="submit" value="Submit" class="button text-white btn-outline-secondary">Search</button>
                         </form>
                     </div>
                 <!-- Recently Searched -->
@@ -38,13 +37,11 @@
             </nav>
         
         <!-- Main Weather Dashboard -->
-        <div class="col-12 col-md-8">
-            <div class="main-dash">
-                <div class="row ml-2 border border-dark">
-                    <div class="col-sm-12 display" id="current-weather">
-                        <p><span class="currentDay"></span></p>
-                        <p class="cityName" id="searchedCity"></p>
-                        <p class="text-uppercase" id="weather-description"><span class="description"></span></p>
+        <div class="container col-md-12 col-lg-9 ">
+            <div id="main-dash" class="row border">
+                    <div class="col-12 bg-dark text-white rounded">
+                        <h2 class="cityName" id="searchedCity"><span id="currentDay"></span></h2>
+                        <p><span class="icon"></span></p>
                         <p>Temperature: <span class="temperature"></span></p>
                         <p>Humidity:<span class="humidity"></span></p> 
                         <p>Wind Speed:<span class="windSpeed"></span></p>
@@ -54,62 +51,62 @@
             </div>
 
             <!-- 5 Day Forecast -->
-            <div class="secondary-dash">
-                <h3 class="dash-title text-uppercase">5-Day Forecast:</h3>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-2 ml-2 border border-dark">
-                    <div class="5container">
-                        <div class="weather-container">
-                            <p><span id="day1"></span></p>
-                            <p><span id="Icon1"></span></p>
-                            <p><span id="temp1"></span></p>
-                            <p><span id="hum1"></span></p>
+            <div class="mt-5" id="secondary-dash">
+                <!-- Secondary Dash Header -->
+                <h3 class="col-12 dash-title text-uppercase">5-Day Forecast:</h3>
+                <!-- Start Forecast -->
+                <div class="col-12 d-flex">
+                    <div class="card mb-3 mr-5 bg-dark text-white">
+                        <div class="card-body" id="5container">
+                            <div class="weather-container">
+                                <p><span id="day1"></span></p>
+                                <p><span id="Icon1"></span></p>
+                                <p><span id="temp1"></span></p>
+                                <p><span id="hum1"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3 mr-5 bg-dark text-white">
+                        <div class="card-body" id="5container">
+                            <div class="weather-container">
+                                <p><span id="day2"></span></p>
+                                <p><span id="Icon2"></span></p>
+                                <p><span id="temp2"></span></p>
+                                <p><span id="hum2"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3 mr-5 bg-dark text-white">
+                        <div class="card-body" id="5container">
+                            <div class="weather-container">
+                                <p><span id="day3"></span></p>
+                                <p><span id="Icon3"></span></p>
+                                <p><span id="temp3"></span></p>
+                                <p><span id="hum3"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3 mr-5 bg-dark text-white">
+                        <div class="card-body" id="5container">
+                            <div class="weather-container">
+                                <p><span id="day4"></span></p>
+                                <p><span id="Icon4"></span></p>
+                                <p><span id="temp4"></span></p>
+                                <p><span id="hum4"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3 mr-5 bg-dark text-white">
+                        <div class="card-body" id="5container">
+                            <div class="weather-container">
+                                <p><span id="day5"></span></p>
+                                <p><span id="Icon5"></span></p>
+                                <p><span id="temp5"></span></p>
+                                <p><span id="hum5"></span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2 ml-2 border border-dark">
-                    <div class="5container">
-                        <div class="weather-container">
-                            <p><span id="day2"></span></p>
-                            <p><span id="Icon2"></span></p>
-                            <p><span id="temp2"></span></p>
-                            <p><span id="hum2"></span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 ml-2 border border-dark">
-                    <div class="5container">
-                        <div class="weather-container">
-                            <p><span id="day3"></span></p>
-                            <p><span id="Icon3"></span></p>
-                            <p><span id="temp3"></span></p>
-                            <p><span id="hum3"></span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 ml-2 border border-dark">
-                    <div class="5container">
-                        <div class="weather-container">
-                            <p><span id="day4"></span></p>
-                            <p><span id="Icon4"></span></p>
-                            <p><span id="temp4"></span></p>
-                            <p><span id="hum4"></span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 ml-2 border border-dark">
-                    <div class="5container">
-                        <div class="weather-container">
-                            <p><span id="day5"></span></p>
-                            <p><span id="Icon5"></span></p>
-                            <p><span id="temp5"></span></p>
-                            <p><span id="hum5"></span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
