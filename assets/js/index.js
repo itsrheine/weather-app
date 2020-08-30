@@ -2,7 +2,7 @@
 var button = document.querySelector(".button");
 var inputValue = document.querySelector("#city");
 var cityName = document.querySelector(".cityName");
-var currentDay = document.querySelector("#currentDay");
+var currentDay = document.querySelector(".currentDay");
 var weatherDescription = document.querySelector(".description");
 var temperature = document.querySelector(".temperature");
 var humidity = document.querySelector(".humidity");
@@ -10,8 +10,7 @@ var windSpeed = document.querySelector(".windSpeed");
 var uvIndex = document.querySelector(".uvIndex");
 var parent = document.getElementById("parentElementID");
 var recentSearch = document.querySelector("#recentSearch");
-var iconWeather = document.querySelector("#wicon");
-
+var iconValue = document.querySelector(".weather-icon");
 
 // keyup for recent searches
 inputValue.addEventListener("keyup", () => {
@@ -43,22 +42,22 @@ var getCity = function(value) {
         // request was successful
         if (response.ok) {            
             response.json().then(function(data) {
-            console.log(data);
+
             // get all the data - main dashboard
             var cityValue = data['name'];
-            var m = moment();
-            var date = m.format("LL");            
-            // var i = data['weather']['icon']; // code
-            // var iconEl = response.weather[i].icon
-            // i.setAttribute("src", ("http://openweathermap.org/img/w/" + iconCode + ".png"));
+            var m = moment().format('LL');
+    
+            var iconEl = data.weather[0].icon; // this is the code
+            iconValue.setAttribute("src", "http://openweathermap.org/img/w/" + iconEl + ".png");
+            
+            // iconValue.innerHTML = iconEl;
             var temperatureValue = data['main']['temp'];
             var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + "°F";
             var humidityValue = " " + data['main']['humidity'] + "%";
             var windSpeedValue = " " + data['wind']['speed'] + " mph";             
 
             cityName.innerHTML = cityValue;
-            currentDay.innerHTML = date;
-            // wicon.innerHTML = iconEl;
+            currentDay.innerHTML = m;
             temperature.innerHTML = temperatureFarhenheit;
             humidity.innerHTML = humidityValue;
             windSpeed.innerHTML = windSpeedValue;
@@ -68,12 +67,7 @@ var getCity = function(value) {
             alert("Error: " + response.statusText);
         }
     })
-
-    .catch(function(error) {
-        // if above function does not work
-    alert("Unable to connect");
-    });
-};
+}
 
 
 // get city's coordinates & uv index for main dashboard
@@ -123,12 +117,7 @@ var cityCoord = function (data) {
             alert("Error: " + response.statusText);
         }
     })
-
-    .catch(function(error) {
-    // if above function does not work
-    alert("Unable to connect");
-    });
-};
+}
 
 
 // get 5 day forecast
@@ -144,31 +133,35 @@ var get5Day = function (value) {
         if (response.ok) {            
             response.json().then(function(data) {
                      
-            for (var i = 1; 1 < 6; i++) {
+            for (var i = 1; 1 < 8; i++) {
 
                 // variables - 5 day forecast
                 var dateEl = document.querySelector("#day" + i);
                 var tempEl = document.querySelector("#temp" + i);
                 var humiEl = document.querySelector("#hum" + i);
-                    
+                var iconEl = document.querySelector("#Icon" + i);
+
                 // secondary dashboard
                 var date = moment().add(i, 'days').format('l');
-                dateEl.innerHTML = date
-
+                dateEl.innerHTML = date;
+                
                 var temperatureValue = data.list[i].main.temp;
                 var temperatureFarhenheit = Math.round(((temperatureValue - 273.15)*1.8)+32) + "°F";
                 tempEl.innerHTML = temperatureFarhenheit;                    
                 
                 var humidityValue = data.list[i].main.humidity + "%";
                 humiEl.innerHTML = humidityValue;
+
+                var iconVal = data.list[i].weather[0].icon; // this is the code
+                iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + iconVal + ".png");
             
             }
-        });
+        })
         } else {
-            alert("Error: " + response.statusText);
+        alert("Error: " + response.statusText);
         }
     })
-
+    
     .catch(function(error) {
     // if above function does not work
     alert("Unable to connect");
