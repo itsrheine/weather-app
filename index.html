@@ -27,7 +27,7 @@
                         <h3 class="card-header text-uppercase">Search for City</h3>
                         <form id="user-form" class="card-body">
                             <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a city" class="inputValue" />
-                            <button type="submit" value="Submit" class="button text-white btn-outline-secondary">Search</button>
+                            <button type="submit" value="Submit" id="button" class="text-white btn-outline-secondary">Search</button>
                         </form>
                     </div>
                 <!-- Recently Searched -->
@@ -40,7 +40,7 @@
         <div class="container col-md-12 col-lg-9 ">
             <div id="main-dash" class="row border">
                     <div class="col-12 bg-dark text-white rounded">
-                        <p><h2 id="searchedCity"></h2><span class="currentDay"></span></p>
+                        <p><h2 id="searchedCity"></h2><span id="currentDay"></span></p>
                         <p><img class="weather-icon"></p>
                         <p>Temperature: <span id="temperature"></span></p>
                         <p>Humidity:<span id="humidity"></span></p> 

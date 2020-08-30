@@ -1,8 +1,8 @@
 // variables
-var button = document.querySelector(".button");
-var inputValue = document.querySelector("#city");
-var cityName = document.querySelector("#searchedCity");
-var currentDay = document.querySelector(".currentDay");
+var button = document.getElementById("button");
+var inputValue = document.getElementById("city");
+var cityName = document.getElementById("searchedCity");
+var currentDay = document.getElementById("currentDay");
 var weatherDescription = document.querySelector(".description");
 var temperature = document.querySelector(".temperature");
 var humidity = document.querySelector(".humidity");
@@ -38,7 +38,7 @@ var getCity = function(value) {
             cityCoord(data.coord.lon, data.coord.lat);
             get5Day(data, value);
                 
-            })
+        })
         } else {
             alert("Error: " + response.statusText);
         }
@@ -70,44 +70,56 @@ var mainDashboard = function(data, city) {
 }
 
 // get city's coordinates & uv index for main dashboard
-var cityCoord = function (data) {
+var cityCoord = function (value) {
     
-    // variables for longitude and latitude
-    var lonValue = data['coord']['lon'];
-    var latValue = data['coord']['lat'];
-
     // format api url
-    var apiUrl2 = "https://api.openweathermap.org/data/2.5/uvi?appid=386eafe2ba649945a853251bb7d3f25e&lat="+latValue+"&lon="+lonValue;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+value+"&appid=386eafe2ba649945a853251bb7d3f25e"
 
-        // make a request to 2nd url
-        fetch(apiUrl2).then(function(response) {
+    // make a request to the url
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
             response.json().then(function(data) {
 
-                if (response.ok) {
-                    response.json().then(function(data) {
-                
-                    // get data in main dashboard
-                    var uvIndexValue = data['value'];
-                    uvIndex.innerHTML = uvIndexValue;
+            // variables for longitude and latitude
+            var lonValue = data['coord']['lon'];
+            var latValue = data['coord']['lat'];
 
-                    // conditional statement color coding
-                    if (uvIndexValue > 5) {
-                        uvIndex.className = "rounded bg-danger p3";
-                    }
-                    else if (uvIndexValue < 3) {
-                        uvIndex.className = "rounded bg-success p3";
+                // format api url
+                var apiUrl2 = "https://api.openweathermap.org/data/2.5/uvi?appid=386eafe2ba649945a853251bb7d3f25e&lat="+latValue+"&lon="+lonValue;
+
+                // make a request to 2nd url
+                fetch(apiUrl2).then(function(response) {
+                    response.json().then(function(data) {
+
+                        if (response.ok) {
+                            response.json().then(function(data) {
+                        
+                            // get data in main dashboard
+                            var uvIndexValue = data['value'];
+                            uvIndex.innerHTML = uvIndexValue;
+
+                            // conditional statement color coding
+                            if (uvIndexValue > 5) {
+                                uvIndex.className = "rounded bg-danger p3";
+                            }
+                            else if (uvIndexValue < 3) {
+                                uvIndex.className = "rounded bg-success p3";
+                            }
+                            else {
+                                uvIndex.className = "rounded bg-warning p3";
+                            }
+                            return uvIndexValue;
+                        })
                     }
                     else {
-                        uvIndex.className = "rounded bg-warning p3";
+                    alert("There is a problem with your request.");
                     }
-                    return uvIndexValue;
                 })
-            }
-            else {
-            alert("There is a problem with your request.");
-        }
+            })    
+        })
     })
-})
+}  
+
 
 // get 5 day forecast
 var get5Day = function (data) {
@@ -169,7 +181,7 @@ var formSubmitHandler = function(event) {
             localStorage.setItem("recentSearch", "[]");
         }
         var newCity = JSON.parse(localStorage.getItem("recentSearch"));
-        newCity.push(inputValEl);d
+        newCity.push(inputValEl);
     };
 
     getCity(inputValEl);
