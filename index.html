@@ -40,12 +40,12 @@
         <div class="container col-md-12 col-lg-9 ">
             <div id="main-dash" class="row border">
                     <div class="col-12 bg-dark text-white rounded">
-                        <p><h2 class="cityName" id="searchedCity"></h2><span class="currentDay"></span></p>
+                        <p><h2 id="searchedCity"></h2><span class="currentDay"></span></p>
                         <p><img class="weather-icon"></p>
-                        <p>Temperature: <span class="temperature"></span></p>
-                        <p>Humidity:<span class="humidity"></span></p> 
-                        <p>Wind Speed:<span class="windSpeed"></span></p>
-                        <p>UV index: <span class="uvIndex"></span></p> 
+                        <p>Temperature: <span id="temperature"></span></p>
+                        <p>Humidity:<span id="humidity"></span></p> 
+                        <p>Wind Speed:<span id="windSpeed"></span></p>
+                        <p>UV index: <span id="uvIndex"></span></p> 
                     </div>
                 </div>
             </div>
@@ -57,57 +57,48 @@
                 <!-- Start Forecast -->
                 <div class="col-12 d-flex">
                     <div class="card mb-3 mr-5 bg-dark text-white">
-                        <div class="card-body" id="5container">
-                            <div class="weather-container">
-                                <p><span id="day1"></span></p>
-                                <p><img id="Icon1"></span></p>
-                                <p><span id="temp1"></span></p>
-                                <p><span id="hum1"></span></p>
-                            </div>
+                        <div class="card-body">
+                            <p><span id="day1"></span></p>
+                            <p><img id="Icon1"></span></p>
+                            <p><span id="temp1"></span></p>
+                            <p><span id="hum1"></span></p>
                         </div>
                     </div>
                     <div class="card mb-3 mr-5 bg-dark text-white">
-                        <div class="card-body" id="5container">
-                            <div class="weather-container">
-                                <p><span id="day2"></span></p>
-                                <p><img id="Icon2"></span></p>
-                                <p><span id="temp2"></span></p>
-                                <p><span id="hum2"></span></p>
-                            </div>
+                        <div class="card-body">
+                            <p><span id="day2"></span></p>
+                            <p><img id="Icon2"></span></p>
+                            <p><span id="temp2"></span></p>
+                            <p><span id="hum2"></span></p>
                         </div>
                     </div>
                     <div class="card mb-3 mr-5 bg-dark text-white">
-                        <div class="card-body" id="5container">
-                            <div class="weather-container">
-                                <p><span id="day3"></span></p>
-                                <p><img id="Icon3"></span></p>
-                                <p><span id="temp3"></span></p>
-                                <p><span id="hum3"></span></p>
-                            </div>
+                        <div class="card-body">
+                            <p><span id="day3"></span></p>
+                            <p><img id="Icon3"></span></p>
+                            <p><span id="temp3"></span></p>
+                            <p><span id="hum3"></span></p>
                         </div>
                     </div>
                     <div class="card mb-3 mr-5 bg-dark text-white">
-                        <div class="card-body" id="5container">
-                            <div class="weather-container">
-                                <p><span id="day4"></span></p>
-                                <p><img id="Icon4"></span></p>
-                                <p><span id="temp4"></span></p>
-                                <p><span id="hum4"></span></p>
-                            </div>
+                        <div class="card-body">
+                            <p><span id="day4"></span></p>
+                            <p><img id="Icon4"></span></p>
+                            <p><span id="temp4"></span></p>
+                            <p><span id="hum4"></span></p>
                         </div>
                     </div>
                     <div class="card mb-3 mr-5 bg-dark text-white">
-                        <div class="card-body" id="5container">
-                            <div class="weather-container">
-                                <p><span id="day5"></span></p>
-                                <p><img id="Icon5"></span></p>
-                                <p><span id="temp5"></span></p>
-                                <p><span id="hum5"></span></p>
-                            </div>
+                        <div class="card-body">
+                            <p><span id="day5"></span></p>
+                            <p><img id="Icon5"></span></p>
+                            <p><span id="temp5"></span></p>
+                            <p><span id="hum5"></span></p>
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
+        </div>  
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/index.js"></script>
