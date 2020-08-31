@@ -9,5 +9,5 @@ https://itsrheine.github.io/weather-app/
 
 
 ## Screenshot
-![Screenshot]()
+![Screenshot](assets/svg/Weather-Dash.JPG)
 
