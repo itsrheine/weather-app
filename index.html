@@ -19,19 +19,21 @@
     </header>
 
     <main class="container-fluid">
-        <div class="row">
+        <div class="row bg-dark ">
             <nav id="searchBar" class="col-md-12 col-lg-3 d-md-block bg-dark text-light sidebar collapse rounded">
                 <div class="sidebar-sticky pt-3">
                     <!-- Search Form -->
                     <div class="input-group mb-3"> 
-                        <h3 class="card-header text-uppercase">Search for City</h3>
+                        <h3 class="card-header text-uppercase sticky text-center ">Search for City</h3>
                         <form id="user-form" class="card-body">
                             <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a city" class="inputValue" />
-                            <button type="submit" value="Submit" class="button text-white btn-outline-secondary">Search</button>
+                            <button type="submit" value="Submit" class="sticky button text-white btn-outline-secondary">
+                                <img src="assets/svg/search.svg" class="searchButton sticky">
+                            </button>
                         </form>
                     </div>
                 <!-- Recently Searched -->
-                <div id="recentSearch" class="nav flex-column">
+                <div id="recentSearch" class="searchNav nav flex-column">
                              
                 </div>   
             </nav>
@@ -51,13 +53,13 @@
             </div>
 
             <!-- 5 Day Forecast -->
-            <div class="mt-5" id="secondary-dash">
+            <div class="bg-dark text-white mt-5 col-md-12 col-lg-9" id="secondary-dash">
                 <!-- Secondary Dash Header -->
-                <h3 class="col-12 dash-title text-uppercase">5-Day Forecast:</h3>
+                <h3 class="col-12 dash-title text-center display-4">5-Day Forecast:</h3>
                 <!-- Start Forecast -->
-                <div class="col-12 d-flex">
-                    <div class="card mb-3 mr-5 bg-dark text-white">
-                        <div class="card-body" id="5container">
+                <div class="col-12 d-flex justify-content-between">
+                    <div class="card mb-3 mr-5 bg-dark text-white ">
+                        <div class="card-body rounded" id="5container">
                             <div class="weather-container">
                                 <p><span id="day1"></span></p>
                                 <p><img id="Icon1"></span></p>

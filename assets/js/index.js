@@ -166,7 +166,7 @@ var formSubmitHandler = function(event) {
     if (askCity) {
         cityList = document.createElement("li");
         cityList.className = "nav-item";
-        cityList.innerHTML="<a href='#' class='border nav-link'><span data-feather='file'></span>"+askCity+"</a>";
+        cityList.innerHTML="<a href='#' class='border nav-link text-white'>"+askCity+"</a>";
     
         recentSearch.appendChild(cityList);
         oldCitySearch.push(askCity);
@@ -192,7 +192,7 @@ var localSafe = function () {
         for (var i = 0; i < oldCities.length; i++) {
             cityList = document.createElement("li");
             cityList.className = "nav-item";
-            cityList.innerHTML="<a href='#' class='border nav-link'><span data-feather='file'></span>"+oldCities[i]+"</a>";
+            cityList.innerHTML="<a href='#' class='border nav-link text-white'></span>"+oldCities[i]+"</a>";
         
             recentSearch.appendChild(cityList);
         }
