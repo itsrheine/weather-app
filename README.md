@@ -1,5 +1,4 @@
-## Title
-Weather Dashboard App
+## Weather Dashboard App
 
 ## Description
 A simple weather app that provides a current and five day weather forecast for your convenience.
