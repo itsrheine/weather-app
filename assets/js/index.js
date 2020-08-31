@@ -43,7 +43,7 @@ var getCity = function(value) {
             var m = moment().format('LL');
     
             var iconEl = data.weather[0].icon; // this is the code
-            iconValue.setAttribute("src", "http://openweathermap.org/img/w/" + iconEl + ".png");
+            iconValue.setAttribute("src", "https://openweathermap.org/img/w/" + iconEl + ".png");
             
             // iconValue.innerHTML = iconEl;
             var temperatureValue = data['main']['temp'];
@@ -149,7 +149,7 @@ var get5Day = function (value) {
                 humiEl.innerHTML = humidityValue;
 
                 var iconVal = data.list[i].weather[0].icon; // this is the code
-                iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + iconVal + ".png");
+                iconEl.setAttribute("src", "https://openweathermap.org/img/w/" + iconVal + ".png");
             
                 }        
             })
