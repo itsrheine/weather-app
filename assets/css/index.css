@@ -1,9 +1,12 @@
+.card-body {
+  padding: 2.5rem;
+} 
 
-
-.hide {
-  display:none;
+.weather-container {
+  font-size: 16px;
+  text-align: center;
 }
 
-.card-body {
-  padding: 4.5rem;
-} 
+#main-dash {
+  padding 
+}

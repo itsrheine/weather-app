@@ -12,6 +12,8 @@ var parent = document.getElementById("parentElementID");
 var recentSearch = document.querySelector("#recentSearch");
 var iconValue = document.querySelector(".weather-icon");
 
+var oldCitySearch = [];
+
 // keyup for recent searches
 inputValue.addEventListener("keyup", () => {
     // disables the person adding an empty search bar
@@ -22,13 +24,6 @@ inputValue.addEventListener("keyup", () => {
     cityCoord(city);
     get5Day(city);
 })
-
-var loadLast = function (event) {
-    var city = event.target.textContent;
-    getCity(city);
-    cityCoord(city);
-    get5Day(city);
-}
 
 // get main dashboard current weather - using city id
 var getCity = function(value) {
@@ -133,7 +128,7 @@ var get5Day = function (value) {
         if (response.ok) {            
             response.json().then(function(data) {
                      
-            for (var i = 1; 1 < 8; i++) {
+            for (var i = 1; i < 6; i++) {
 
                 // variables - 5 day forecast
                 var dateEl = document.querySelector("#day" + i);
@@ -143,6 +138,7 @@ var get5Day = function (value) {
 
                 // secondary dashboard
                 var date = moment().add(i, 'days').format('l');
+                console.log(date);
                 dateEl.innerHTML = date;
                 
                 var temperatureValue = data.list[i].main.temp;
@@ -155,18 +151,11 @@ var get5Day = function (value) {
                 var iconVal = data.list[i].weather[0].icon; // this is the code
                 iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + iconVal + ".png");
             
-            }
-        })
-        } else {
-        alert("Error: " + response.statusText);
+                }        
+            })
         }
     })
-    
-    .catch(function(error) {
-    // if above function does not work
-    alert("Unable to connect");
-    });
-};
+}
 
 // when search button is clicked 
 var formSubmitHandler = function(event) {
@@ -180,32 +169,44 @@ var formSubmitHandler = function(event) {
         cityList.innerHTML="<a href='#' class='border nav-link'><span data-feather='file'></span>"+askCity+"</a>";
     
         recentSearch.appendChild(cityList);
+        oldCitySearch.push(askCity);
+        localStorage.setItem("oldCities", JSON.stringify(oldCitySearch));
         
         getCity(askCity);
         inputValue.value = "";
+
     } else {
         alert("Please enter a city.");
     }
-
-    var city = inputValue.value;
-    
-    // local storage
-    function save() {
-        var addCity = city
-        if (localStorage.getItem("recentSearch") === null) {
-            localStorage.setItem("recentSearch", "[]");
-        }
-        var newCity = JSON.parse(localStorage.getItem("recentSearch"));
-        newCity.push(addCity);
-
-        localStorage.setItem("recentSearch", JSON.stringify(newCity))
-    };
-
-    getCity(city);
-    cityCoord(city);
-    get5Day(city);
-    save(city);
 };
 
+// local storage and saving
+var localSafe = function () {
+     // local storage
+    var oldCities = JSON.parse(localStorage.getItem('oldCities'));
+
+    if (oldCities === null) {
+        return;
+    }
+    else {
+        for (var i = 0; i < oldCities.length; i++) {
+            cityList = document.createElement("li");
+            cityList.className = "nav-item";
+            cityList.innerHTML="<a href='#' class='border nav-link'><span data-feather='file'></span>"+oldCities[i]+"</a>";
+        
+            recentSearch.appendChild(cityList);
+        }
+    }
+}
+
+localSafe();
+
+var sideSearches = function (event) {
+    var cityName = event.target.textContent;
+    getCity(cityName);
+    cityCoord(cityName);
+    get5Day(cityName);
+}
 
 button.addEventListener("click", formSubmitHandler);
+recentSearch.addEventListener("click", sideSearches);
