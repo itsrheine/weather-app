@@ -14,17 +14,6 @@ var iconValue = document.querySelector(".weather-icon");
 
 var oldCitySearch = [];
 
-// keyup for recent searches
-inputValue.addEventListener("keyup", () => {
-    // disables the person adding an empty search bar
-    button.disabled = !inputValue.value;
-
-    var city = inputValue.value;
-    getCity(city);
-    cityCoord(city);
-    get5Day(city);
-})
-
 // get main dashboard current weather - using city id
 var getCity = function(value) {
     
@@ -173,6 +162,7 @@ var formSubmitHandler = function(event) {
         localStorage.setItem("oldCities", JSON.stringify(oldCitySearch));
         
         getCity(askCity);
+        get5Day(askCity);
         inputValue.value = "";
 
     } else {
