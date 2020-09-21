@@ -7,9 +7,9 @@ Your searches are also saved within your local storage and will also be presente
 Enjoy!
 
 ## Created using
-HTML
-CSS
-JS
+- HTML
+- CSS
+- JS
 
 ## Weather API
 https://openweathermap.org/
